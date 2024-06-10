@@ -15,6 +15,14 @@ This project is a C++ implementation of a distributed real-time data processing 
 ## Project Roadmap (WIP)
 ![Alt Text](images/flowchart.jpg)
 
+### Features implemented
+- [x] Client
+- [x] TCP Server
+- [ ] Kafka Producer
+- [ ] Real-Time Data Processing Logic
+- [ ] InfluxDB
+- [ ] Performance Metrics (Prometheus/Grafana)
+
 ## Credits
 - [Boost C++ Libraries](https://www.boost.org/)
 - [nlohmann/json](https://github.com/nlohmann/json) for JSON handling
