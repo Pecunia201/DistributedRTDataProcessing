@@ -1,0 +1,7 @@
+# Ignore build directories
+out/
+build/
+.vs/
+
+# Ignore third party libraries
+boost_1_84_0/
