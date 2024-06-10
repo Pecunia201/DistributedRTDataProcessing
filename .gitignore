@@ -5,3 +5,4 @@ build/
 
 # Ignore third party libraries
 boost_1_84_0/
+nlohmann/

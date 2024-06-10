@@ -6,7 +6,7 @@ This project is a C++ implementation of a distributed real-time data processing 
 ## Setup Instructions
 1. **Boost Installation:** Download and build Boost version 1.84.0 from [the official Boost website](https://www.boost.org/users/history/).
 2. **Add Boost:** Place the built `boost_1_84_0` into the `/src/include` directory of this project.
-3. **nlohmann's JSON:** The project already includes nlohmann's `json.hpp` library for JSON handling.
+3. **nlohmann's JSON:** Download `include.zip` from [GitHub releases](https://github.com/nlohmann/json). Place the `nlohmann` folder containing header.hpp into the `/src/include` directory of this project.
 
 ## Usage
 1. **Server:** Compile and run `server.cpp` to start the server. It listens for incoming JSON data on port `1234`.
