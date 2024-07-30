@@ -3,6 +3,9 @@
 # Set the project name
 project ("RTDataProcessing")
 
-# Add subdirectories for client and server
-add_subdirectory(src/client)
-add_subdirectory(src/server)
+# Set C++ standard
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# Add the src directory
+add_subdirectory(src)

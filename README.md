@@ -4,9 +4,8 @@
 This project is a C++ implementation of a distributed real-time data processing system. It consists of a server component that listens for incoming JSON data from clients and a client component that sends simulated IoT data to the server.
 
 ## Setup Instructions
-1. **Boost Installation:** Download and build Boost version 1.84.0 from [the official Boost website](https://www.boost.org/users/history/).
-2. **Add Asio standalone:** Download `asio_1_30_2` from [their website](https://think-async.com/Asio/Download.html). Place the `asio.hpp` file and `asio` folder in a `/src/include` directory of this project.
-3. **nlohmann's JSON:** Download `include.zip` from [GitHub releases](https://github.com/nlohmann/json). Place the `nlohmann` folder containing header.hpp into a `/src/include` directory of this project.
+1. **Add Asio standalone:** Download `asio_1_30_2` from [their website](https://think-async.com/Asio/Download.html). Place the `asio.hpp` file and `asio` folder in a `/src/include` directory of this project.
+2. **nlohmann's JSON:** Download `include.zip` from [GitHub releases](https://github.com/nlohmann/json). Place the `nlohmann` folder containing header.hpp into a `/src/include` directory of this project.
 
 ## Usage
 1. **Server:** Compile and run `server.cpp` to start the server. It listens for incoming JSON data on port `1234`.
