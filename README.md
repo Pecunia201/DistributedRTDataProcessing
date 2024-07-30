@@ -11,8 +11,7 @@ This project is a C++ implementation of a distributed real-time data processing 
 5. Start the Kafka broker ``confluent kafka start`` and create a topic ``confluent kafka topic create iot-data``.
 
 ## Usage
-1. **Server:** Compile and run `server.cpp` to start the server. It listens for incoming JSON data on port `1234`.
-2. **Client:** Compile and run `client.cpp` to simulate IoT data and send it to the server.
+1. Compile and run `main.cpp` which will start every component.
 
 ## Project Roadmap (WIP)
 ![Alt Text](images/flowchart.jpg)
