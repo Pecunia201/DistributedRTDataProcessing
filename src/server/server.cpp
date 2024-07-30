@@ -1,25 +1,26 @@
 ﻿#include <ctime>
 #include <iostream>
 #include <string>
-#include <boost/asio.hpp>
+#include <asio.hpp>
 #include <nlohmann/json.hpp>
+#include <librdkafka/rdkafkacpp.h>
 
-using boost::asio::ip::tcp;
+using asio::ip::tcp;
 using json = nlohmann::json;
 
 void handle_client(tcp::socket socket) {
     try {
         std::array<char, 256> buf;
-        boost::system::error_code error;
+        asio::error_code error;
 
         for (;;) {
             // Read JSON message from client
-            size_t len = socket.read_some(boost::asio::buffer(buf), error);
+            size_t len = socket.read_some(asio::buffer(buf), error);
 
-            if (error == boost::asio::error::eof)
+            if (error == asio::error::eof)
                 break; // Connection closed cleanly by peer
             else if (error)
-                throw boost::system::system_error(error); // Some other error
+                throw asio::system_error(error); // Some other error
 
             // Parse received JSON
             std::string received_data(buf.data(), len);
@@ -29,30 +30,35 @@ void handle_client(tcp::socket socket) {
                 // Print received JSON
                 std::cout << "Received: " << received_json.dump() << std::endl;
 
+                // Produce the received JSON message to Kafka
+                //
+
                 // Send confirmation message back to client
                 std::string confirmation_message = "JSON received successfully!";
-                boost::asio::write(socket, boost::asio::buffer(confirmation_message), error);
+                asio::write(socket, asio::buffer(confirmation_message), error);
+                if (error) throw asio::system_error(error);
                 std::cout << "Sent confirmation message to client." << std::endl;
-                
-                // Produce the received JSON message to Kafka here (WIP)
             }
             catch (const std::exception& e) {
                 // If parsing fails, send an error message back to the client
-                std::string error_message = "Error: Invalid JSON recieved.";
-                boost::asio::write(socket, boost::asio::buffer(error_message), error);
-                std::cerr << "Error: Invalid JSON recieved" << std::endl;
+                std::string error_message = "Error: Invalid JSON received.";
+                asio::write(socket, asio::buffer(error_message), error);
+                if (error) throw asio::system_error(error);
+                std::cerr << "Error: Invalid JSON received" << std::endl;
             }
         }
     }
-    catch (std::exception& e) {
+    catch (const asio::system_error& e) {
         std::cerr << e.what() << std::endl;
     }
 }
 
 int main() {
     try {
-        boost::asio::io_context io_context;
+        // Kafka configuration
 
+        // Boost configuration
+        asio::io_context io_context;
         tcp::acceptor acceptor(io_context, tcp::endpoint(tcp::v4(), 1234));
 
         // Loop forever to accept incoming connections

@@ -1,11 +1,11 @@
-#include <iostream>
-#include <boost/asio.hpp>
+﻿#include <iostream>
+#include <asio.hpp>
 #include <nlohmann/json.hpp>
 #include <random>
 #include <chrono>
 #include <thread>
 
-using boost::asio::ip::tcp;
+using asio::ip::tcp;
 using json = nlohmann::json;
 
 // Function to generate random float within a range
@@ -50,43 +50,43 @@ void send_json(tcp::socket& socket) {
         std::cout << "Sending JSON to server: " << json_string << std::endl;
 
         // Send JSON string to server
-        boost::asio::write(socket, boost::asio::buffer(json_string));
+        asio::write(socket, asio::buffer(json_string));
 
         // Read confirmation message from server
         std::array<char, 128> confirmation_buf;
-        boost::system::error_code error;
-        size_t confirmation_len = socket.read_some(boost::asio::buffer(confirmation_buf), error);
+        std::error_code error;
+        size_t confirmation_len = socket.read_some(asio::buffer(confirmation_buf), error);
 
         if (!error) {
             std::cout.write(confirmation_buf.data(), confirmation_len);
             std::cout << std::endl;
         }
-    }
-    catch (boost::system::system_error& e) {
-        // Check if the error is due to a closed connection
-        if (e.code() == boost::asio::error::connection_reset ||
-            e.code() == boost::asio::error::eof) {
-            std::cerr << "Connection closed by server." << std::endl;
-            // Set the flag to indicate that the connection is closed
-            connection_closed = true;
-        }
         else {
-            // Handle other errors
-            std::cerr << "Error: " << e.what() << std::endl;
+            // Handle errors
+            if (error == asio::error::connection_reset || error == asio::error::eof) {
+                std::cerr << "Connection closed by server." << std::endl;
+                connection_closed = true;
+            }
+            else {
+                std::cerr << "Error: " << error.message() << std::endl;
+            }
         }
+    }
+    catch (std::system_error& e) {
+        std::cerr << "Exception: " << e.what() << std::endl;
     }
 }
 
 int main() {
     try {
-        boost::asio::io_context io_context;
+        asio::io_context io_context;
 
         tcp::resolver resolver(io_context);
         tcp::resolver::results_type endpoints =
             resolver.resolve("localhost", "1234");
 
         tcp::socket socket(io_context);
-        boost::asio::connect(socket, endpoints);
+        asio::connect(socket, endpoints);
 
         // Loop to send JSON every 2 seconds until the connection is closed
         while (!connection_closed) {

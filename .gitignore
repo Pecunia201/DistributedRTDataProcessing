@@ -4,5 +4,8 @@ build/
 .vs/
 
 # Ignore third party libraries
-boost_1_84_0/
+asio/
+asio.hpp
+Makefile.am
+Makefile.in
 nlohmann/
