@@ -19,13 +19,8 @@ This project is a C++ implementation of a distributed real-time data processing 
 ### Features implemented
 - [x] IoT Devices
 - [x] ASIO Server
-- [ ] Apache NiFi for preprocessing
 - [x] Apache Kafka (Producer)
 - [x] Apache Kafka (Consumer)
 - [ ] Apache Flink for stream processing
 - [ ] InfluxDB
 - [ ] Performance Metrics (Prometheus/Grafana)
-
-## Credits
-- [Boost C++ Libraries](https://www.boost.org/)
-- [nlohmann/json](https://github.com/nlohmann/json) for JSON handling
