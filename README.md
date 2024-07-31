@@ -21,6 +21,6 @@ This project is a C++ implementation of a distributed real-time data processing 
 - [x] ASIO Server
 - [x] Apache Kafka (Producer)
 - [x] Apache Kafka (Consumer)
-- [ ] Apache Flink for stream processing
+- [ ] Apache Spark for stream processing
 - [ ] InfluxDB
 - [ ] Performance Metrics (Prometheus/Grafana)
