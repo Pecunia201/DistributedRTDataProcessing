@@ -3,10 +3,9 @@
 #include <mutex>
 #include <exception>
 #include "iot_device/client.h"
-#include "asio_server/server.h"
-#include "kafka/consumer/consumer.h"
+#include "data_ingestion/asio_receiver/server.h"
 
-// Mutex for synchronizing console output
+// Mutex for synchronising console output
 std::mutex console_mutex;
 
 // Function to print messages safely
@@ -35,23 +34,10 @@ void runIoTDeviceSimulator(int sensor_id) {
     }
 }
 
-// Function to run the Kafka consumer
-void runKafkaConsumer() {
-    try {
-        int argc = 0;
-        char** argv = nullptr;
-        setupKafkaConsumer(argc, argv);
-    }
-    catch (const std::exception& e) {
-        printSafe("Kafka consumer error: " + std::string(e.what()));
-    }
-}
-
 int main() {
     try {
         // Create threads to run the server and Kafka consumer
         std::thread asioThread(runASIOServer);
-        std::thread consumerThread(runKafkaConsumer);
 
         // Create and pass unique integer parameters to the IoT device simulator threads
         std::thread iotThread1([]() { runIoTDeviceSimulator(1); });
@@ -60,7 +46,6 @@ int main() {
 
         // Wait for all threads to complete
         asioThread.join();
-        consumerThread.join();
         iotThread1.join();
         iotThread2.join();
         iotThread3.join();

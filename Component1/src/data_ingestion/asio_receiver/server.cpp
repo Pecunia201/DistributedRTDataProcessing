@@ -4,7 +4,7 @@
 #include <string>
 #include <asio.hpp>
 #include <nlohmann/json.hpp>
-#include "../kafka/producer/producer.h"
+#include "../kafka_producer/producer.h"
 
 using asio::ip::tcp;
 using json = nlohmann::json;
@@ -44,7 +44,7 @@ void handle_client(tcp::socket socket) {
                 std::string confirmation_message = "JSON received successfully!";
                 asio::write(socket, asio::buffer(confirmation_message), error);
                 if (error) throw asio::system_error(error);
-                std::cout << PREFIX << "Sent confirmation message back to IoT Device." << std::endl;
+                //std::cout << PREFIX << "Sent confirmation message back to IoT Device." << std::endl;
             }
             catch (const std::exception& e) {
                 // If parsing fails, send an error message back to the client

@@ -12,6 +12,7 @@ This project is a C++ implementation of a distributed real-time data processing 
 
 ## Usage
 1. Compile and run `main.cpp` which will start every component.
+2. Compile and run `SparkKafkaConsumer.java` which will start the Apache Spark consumer
 
 ## Project Roadmap (WIP)
 ![Alt Text](images/flowchart.jpg)
@@ -21,6 +22,6 @@ This project is a C++ implementation of a distributed real-time data processing 
 - [x] ASIO Server
 - [x] Apache Kafka (Producer)
 - [x] Apache Kafka (Consumer)
-- [ ] Apache Spark for stream processing
+- [x] Apache Spark for stream processing
 - [ ] InfluxDB
 - [ ] Performance Metrics (Prometheus/Grafana)

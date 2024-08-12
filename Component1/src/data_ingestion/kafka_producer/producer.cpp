@@ -3,7 +3,7 @@
 #include <glib.h>
 #include <librdkafka/rdkafkacpp.h>
 
-#include "../common.c"
+#include "common.c"
 
 // Define the PREFIX constant
 const std::string PREFIX = "\033[33m[Kafka Producer]\033[0m ";

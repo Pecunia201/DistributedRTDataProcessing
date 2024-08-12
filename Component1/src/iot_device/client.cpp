@@ -99,7 +99,7 @@ void setupIoTDeviceSimulator(int sensor_id) {
             // Connection successful, enter the sending loop
             while (!connection_closed) {
                 send_json(socket, sensor_id);
-                std::this_thread::sleep_for(std::chrono::seconds(2)); // Sleep for 2 seconds
+                //std::this_thread::sleep_for(std::chrono::seconds(2)); // Sleep for 2 seconds
             }
 
             // If the connection was closed, log it and attempt to reconnect
@@ -110,7 +110,7 @@ void setupIoTDeviceSimulator(int sensor_id) {
             // If there is an error during connection, log it and wait before retrying
             std::cerr << "\033[36m[IoT Device " << sensor_id << "]\033[0m Connection error: " << e.what() << std::endl;
             std::cerr << "\033[36m[IoT Device " << sensor_id << "]\033[0m Retrying in 2 seconds..." << std::endl;
-            std::this_thread::sleep_for(std::chrono::seconds(2)); // Wait before retrying
+            //std::this_thread::sleep_for(std::chrono::seconds(2)); // Wait before retrying
         }
     }
 }
