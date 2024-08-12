@@ -12,7 +12,7 @@ This project is a C++ implementation of a distributed real-time data processing 
 
 ## Usage
 1. Compile and run `main.cpp` which will start every component.
-2. Compile and run `SparkKafkaConsumer.java` which will start the Apache Spark consumer
+2. Compile and run `SparkKafkaConsumer.java` which will start the Apache Spark consumer. Use JDK 11.
 
 ## Project Roadmap (WIP)
 ![Alt Text](images/flowchart.jpg)
