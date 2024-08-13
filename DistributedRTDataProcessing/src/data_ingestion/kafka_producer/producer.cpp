@@ -5,8 +5,7 @@
 
 #include "common.c"
 
-// Define the PREFIX constant
-const std::string PREFIX = "\033[33m[Kafka Producer]\033[0m ";
+const std::string PREFIX = "[Kafka Producer] ";
 
 rd_kafka_t* producer;
 rd_kafka_conf_t* conf;
@@ -22,13 +21,9 @@ void initialise_kafka() {
     // Create client configuration
     conf = rd_kafka_conf_new();
 
-    // User-specific properties that you must set
+    // Configuration
     rd_kafka_conf_set(conf, "bootstrap.servers", "localhost:65357", NULL, 0);
-
-    // Fixed properties
     rd_kafka_conf_set(conf, "acks", "all", NULL, 0);
-
-    // Install a delivery-error callback.
     rd_kafka_conf_set_dr_msg_cb(conf, dr_msg_cb);
 
     // Create the Producer instance.
