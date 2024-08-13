@@ -11,8 +11,9 @@ This project is a C++ implementation of a distributed real-time data processing 
 5. Start the Kafka broker ``confluent kafka start`` and create a topic ``confluent kafka topic create iot-data``.
 
 ## Usage
-1. Compile and run `main.cpp` which will start every component.
-2. Compile and run `SparkKafkaConsumer.java` which will start the Apache Spark consumer. Use JDK 11.
+1. Compile and run `client.cpp` which will run 3 simulated IoT devices
+2. Compile and run `server.cpp` which will run the ASIO server and forward the data to the Kafka broker
+3. Compile and run `SparkKafkaConsumer.java` which will start the Apache Spark consumer. Use JDK 11.
 
 ## Project Roadmap (WIP)
 ![Alt Text](images/flowchart.jpg)

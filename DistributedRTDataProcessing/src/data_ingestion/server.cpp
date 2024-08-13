@@ -75,10 +75,10 @@ int main() {
     }
     catch (const std::exception& e) {
         std::cout << PREFIX << "Server error: " << e.what() << std::endl;
-        return 1; // Return a non-zero value to indicate an error
+        return 1;
     }
 
     // Kafka cleanup
     cleanup_kafka();
-    return 0; // Return 0 to indicate successful completion
+    return 0;
 }
